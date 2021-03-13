@@ -16,7 +16,7 @@ vector<string> parseStrings(string line1)
 
     for (int i = 0; i < line1.length(); i++)
     {
-        if ((isalpha(line1[i]) && line1[i] != ',') || line1.length() < 3)       //here we are checking to see if there exists letters or empty coordinates
+        if ((isalpha(line1[i]) && line1[i] != ',') || line1.length() < 5)       //here we are checking to see if there exists letters or empty coordinates
         {
             return vec;                                                         //if contains any invalid characters, the empty vector is returned
         }
@@ -27,8 +27,8 @@ vector<string> parseStrings(string line1)
 
         if (line1[j] == ',')
         {
-            vec.push_back(line1.substr(0, j));                                  //the contents before and after the comma are recorded and appended into the vector
-            vec.push_back(line1.substr(j + 1, line1.length() - 1));
+            vec.push_back(line1.substr(1, j));                                  //the contents before and after the comma are recorded and appended into the vector
+            vec.push_back(line1.substr(j + 1, line1.length() - 2));
         }
     }
 
@@ -55,41 +55,41 @@ void calcDist(string line1,string line2)
 
 int main()
 { 
-    string lineA = "-1, 2";
-    string lineB = "7, -2";
+    string lineA = "(-1, 2)";
+    string lineB = "(7, -2)";
     cout << "********************Test1: Testing single digit coordinates with spaces*****************************\n"
-        << "First coordinate is: (" << lineA << ") second coordinate is: (" << lineB << ")" <<endl;
+        << "First coordinate is: " << lineA << " second coordinate is: " << lineB << "" <<endl;
     calcDist(lineA, lineB);
     cout << "*************************************End of Test1****************************************\n\n\n";
 
 
-    lineA = "-10,90";
-    lineB = "80, -40";
+    lineA = "(-10,90)";
+    lineB = "(80, -40)";
     cout << "********************Test2: Testing double digit coordinates with no spaces AND spaces*****************************\n"
-        << "First coordinate is: (" << lineA << ") second coordinate is: (" << lineB << ")" << endl;
+        << "First coordinate is: " << lineA << " second coordinate is: " << lineB << "" << endl;
     calcDist(lineA, lineB);
     cout << "*************************************End of Test2****************************************\n\n\n";
 
 
-    lineA = ",";
-    lineB = ",";
+    lineA = "(,)";
+    lineB = "(,)";
     cout << "********************Test3: Testing empty coordinates*****************************\n"
-        << "First coordinate is: (" << lineA << ") second coordinate is: (" << lineB << ")" << endl;
+        << "First coordinate is: " << lineA << " second coordinate is: " << lineB << "" << endl;
     calcDist(lineA, lineB);
     cout<< "*************************************End of Test3****************************************\n\n\n";
 
-    lineA = "a,b";
-    lineB = "c,d";
+    lineA = "(a,b)";
+    lineB = "(c,d)";
     cout << "********************Test4: Testing non-digit coordinates*****************************\n"
-        << "First coordinate is: (" << lineA << ") second coordinate is: (" << lineB << ")" << endl;
+        << "First coordinate is: " << lineA << " second coordinate is: " << lineB << "" << endl;
     calcDist(lineA, lineB);
     cout << "*************************************End of Test4****************************************\n\n\n";
 
 
-    lineA = "10,b";
-    lineB = "c,5";
+    lineA = "(10,b)";
+    lineB = "(c,5)";
     cout << "********************Test5: Testing non-digit and numbers coordinates*****************************\n"
-        << "First coordinate is: (" << lineA << ") second coordinate is: (" << lineB << ")" << endl;
+        << "First coordinate is: " << lineA << " second coordinate is: " << lineB << "" << endl;
     calcDist(lineA, lineB);
     cout << "*************************************End of Test5****************************************\n\n\n";
 
